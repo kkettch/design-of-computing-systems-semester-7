@@ -1,0 +1,3 @@
+../Core/Src/led_driver.c:3:6:led_init	24	static
+../Core/Src/led_driver.c:8:6:led_on	16	static
+../Core/Src/led_driver.c:12:6:led_off	16	static

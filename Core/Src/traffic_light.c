@@ -106,7 +106,7 @@ void handle_button_press(void) {
         } else {
             next_red_short = 1;
         }
-    } else {
+    } else if (current_state == STATE_YELLOW || current_state == STATE_GREEN_BLINKING) {
         next_red_short = 1;
     }
 }

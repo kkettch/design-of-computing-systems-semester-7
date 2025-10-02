@@ -1,0 +1,7 @@
+my_hal.c:3:6:GPIO_EnableClock_	9
+my_hal.c:20:17:GPIO_PinIndex_	3
+my_hal.c:28:6:GPIO_ConfigPin	3
+my_hal.c:54:6:GPIO_WritePin	2
+my_hal.c:63:6:GPIO_WritePinsResetMask	2
+my_hal.c:70:15:GPIO_ReadPin	1
+my_hal.c:76:6:My_GPIO_Init	1

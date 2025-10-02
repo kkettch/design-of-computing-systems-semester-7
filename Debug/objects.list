@@ -1,6 +1,7 @@
 "./Core/Src/button_driver.o"
 "./Core/Src/led_driver.o"
 "./Core/Src/main.o"
+"./Core/Src/my_hal.o"
 "./Core/Src/stm32f4xx_hal_msp.o"
 "./Core/Src/stm32f4xx_it.o"
 "./Core/Src/syscalls.o"

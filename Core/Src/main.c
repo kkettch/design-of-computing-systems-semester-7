@@ -75,6 +75,7 @@ int main(void)
   HAL_Init();
 
   /* USER CODE BEGIN Init */
+  My_GPIO_Init();
 
   /* USER CODE END Init */
 
@@ -86,13 +87,10 @@ int main(void)
   /* USER CODE END SysInit */
 
   /* Initialize all configured peripherals */
-  MX_GPIO_Init();
+//  MX_GPIO_Init();
   /* USER CODE BEGIN 2 */
 
   traffic_light_init();
-
-  uint32_t last_traffic_update = 0;
-  uint32_t last_button_update = 0;
 
   /* USER CODE END 2 */
 
@@ -101,21 +99,12 @@ int main(void)
 
   while (1)
   {
-	  uint32_t current_time = HAL_GetTick();
+	  traffic_light_handler();
+	  button_process(&pedestrian_button);
 
-	  if (current_time - last_traffic_update >= 10) {
-	      last_traffic_update = current_time;
-	      traffic_light_handler();
+	  if (button_is_pressed(&pedestrian_button)) {
+		  handle_button_press();
 	  }
-
-	  if (current_time - last_button_update >= 10) {
-	      last_button_update = current_time;
-
-	      if (button_is_pressed(&pedestrian_button)) {
-	          handle_button_press();
-	      }
-	  }
-
 
     /* USER CODE END WHILE */
 

@@ -45,9 +45,13 @@ void set_traffic_light(led_color_t color) {
 }
 
 void traffic_light_handler(void) {
+	static uint32_t last_time = 0;
 	uint32_t current_time = HAL_GetTick();
 	uint32_t state_elapsed = current_time - state_start_time;
 	uint32_t red_time = next_red_short ? RED_TIME_SHORT_MS : RED_TIME_FULL_MS;
+
+	if (current_time - last_time < 10) return;
+		last_time = current_time;
 
 	switch (current_state) {
 

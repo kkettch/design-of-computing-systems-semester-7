@@ -1,4 +1,4 @@
 traffic_light.c:16:6:traffic_light_init	1
 traffic_light.c:27:6:set_traffic_light	5
-traffic_light.c:47:6:traffic_light_handler	11
-traffic_light.c:98:6:handle_button_press	5
+traffic_light.c:47:6:traffic_light_handler	12
+traffic_light.c:102:6:handle_button_press	5

@@ -6,10 +6,11 @@ void led_init(led_t* led, GPIO_TypeDef* port, uint16_t pin) {
 }
 
 void led_on(led_t* led) {
-    HAL_GPIO_WritePin(led->port, led->pin, GPIO_PIN_SET);
+//    HAL_GPIO_WritePin(led->port, led->pin, GPIO_PIN_SET);
+    GPIO_WritePin(led->port, led->pin, GPIO_PIN_SET);
 }
 
 void led_off(led_t* led) {
-    HAL_GPIO_WritePin(led->port, led->pin, GPIO_PIN_RESET);
+//    HAL_GPIO_WritePin(led->port, led->pin, GPIO_PIN_RESET);
+	GPIO_WritePin(led->port, led->pin, GPIO_PIN_RESET);
 }
-

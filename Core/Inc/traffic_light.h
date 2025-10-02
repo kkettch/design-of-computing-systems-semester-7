@@ -4,6 +4,7 @@
 #include "main.h"
 #include "led_driver.h"
 #include "button_driver.h"
+#include "my_hal.h"
 
 #define TIME_2_SEC			2000
 #define TIME_3_SEC			3000
@@ -14,7 +15,6 @@
 #define YELLOW_TIME_MS		TIME_2_SEC
 #define RED_TIME_FULL_MS	(GREEN_TIME_MS * 4)
 #define RED_TIME_SHORT_MS	GREEN_TIME_MS
-
 
 typedef enum {
     STATE_RED,

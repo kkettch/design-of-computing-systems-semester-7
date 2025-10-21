@@ -1,0 +1,11 @@
+../Core/Src/drivers/uart_driver.c:13:19:rb_empty	16	static
+../Core/Src/drivers/uart_driver.c:14:19:rb_full	16	static
+../Core/Src/drivers/uart_driver.c:23:6:uart_set_interrupts	16	static
+../Core/Src/drivers/uart_driver.c:42:9:uart_get_interrupts	4	static
+../Core/Src/drivers/uart_driver.c:47:6:uart_print_char	24	static
+../Core/Src/drivers/uart_driver.c:67:6:uart_print_string	16	static
+../Core/Src/drivers/uart_driver.c:72:6:uart_println_string	16	static
+../Core/Src/drivers/uart_driver.c:81:12:uart_read_char	16	static
+../Core/Src/drivers/uart_driver.c:102:6:HAL_UART_RxCpltCallback	24	static
+../Core/Src/drivers/uart_driver.c:118:6:HAL_UART_TxCpltCallback	16	static
+../Core/Src/drivers/uart_driver.c:130:6:uart_receive_line_task	16	static

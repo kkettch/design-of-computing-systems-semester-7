@@ -27,12 +27,15 @@ void uart_set_interrupts(uint8_t enabled)
     {
         rx_head = rx_tail = 0; // обнуление указателя на буфер, хранящий данные пришедшие с SDK (rx_buf)
         tx_head = tx_tail = 0; // обнуление указателя на буфер, хранящий данные для отправки на SDK (tx_buf)
+
+		HAL_NVIC_EnableIRQ(USART6_IRQn);
         HAL_UART_Receive_IT(&huart6, &rx_byte, 1); // "подписка" на прием 1 байта - сейчас ничего не прочитается, только когда байт будет готов и вызовется HAL_UART_RxCpltCallback
     }
     else // выключаем работу с прерываниями
     {
         HAL_UART_AbortReceive_IT(&huart6); // обрываем операцию на ожидание прерывания для получение байта с SDK
         HAL_UART_AbortTransmit_IT(&huart6); // обрываем операция на получение прерывания для отправки байта на SDK
+        HAL_NVIC_DisableIRQ(USART6_IRQn);
     }
 }
 

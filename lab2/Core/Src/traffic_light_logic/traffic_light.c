@@ -5,6 +5,8 @@ button_t pedestrian_button;
 traffic_light_state_t current_state = STATE_RED;
 uint32_t state_start_time = 0;
 uint8_t next_red_short = 0;
+traffic_mode_t current_mode = MODE_BUTTON_ENABLED; 	// for set mode 1 or set mode 2
+uint32_t red_timeout_sec = RED_TIME_FULL_MS;
 
 
 void traffic_light_init(void) {
@@ -42,7 +44,7 @@ void traffic_light_handler(void) {
 	static uint32_t last_time = 0;
 	uint32_t current_time = HAL_GetTick();
 	uint32_t state_elapsed = current_time - state_start_time;
-	uint32_t red_time = next_red_short ? RED_TIME_SHORT_MS : RED_TIME_FULL_MS;
+	uint32_t red_time = (current_mode == MODE_BUTTON_ENABLED) ? (next_red_short ? RED_TIME_SHORT_MS : red_timeout_sec) : red_timeout_sec;
 
 	if (current_time - last_time < 10) return;
 	last_time = current_time;
@@ -94,6 +96,9 @@ void traffic_light_handler(void) {
 
 
 void handle_button_press(void) {
+
+	if (current_mode == MODE_BUTTON_DISABLED) return;
+
     if (current_state == STATE_RED) {
         uint32_t red_elapsed = HAL_GetTick() - state_start_time;
 

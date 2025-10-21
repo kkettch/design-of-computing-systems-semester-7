@@ -101,12 +101,14 @@ int main(void)
 
   while (1)
   {
+	  // КОМАНДНАЯ СТРОКА
 	  uart_receive_line_task();
 
 	  // СВЕТОФОР
 	  traffic_light_handler();
-	  button_process(&pedestrian_button);
 
+	  // КНОПКА
+	  button_process(&pedestrian_button);
 	  if (button_is_pressed(&pedestrian_button)) {
 		  handle_button_press();
 	  }

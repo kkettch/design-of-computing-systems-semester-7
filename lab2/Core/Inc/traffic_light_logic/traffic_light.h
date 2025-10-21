@@ -23,11 +23,18 @@ typedef enum {
     STATE_YELLOW
 } traffic_light_state_t;
 
+typedef enum {
+    MODE_BUTTON_ENABLED = 1,
+    MODE_BUTTON_DISABLED = 2
+} traffic_mode_t;
+
 extern led_t green_led, yellow_led, red_led;
 extern button_t pedestrian_button;
 extern traffic_light_state_t current_state;
 extern uint32_t state_start_time;
 extern uint8_t next_red_short;
+extern traffic_mode_t current_mode;
+extern uint32_t red_timeout_sec;
 
 void traffic_light_init(void);
 void set_traffic_light(led_color_t color);

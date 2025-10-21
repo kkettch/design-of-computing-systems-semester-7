@@ -1,7 +1,6 @@
 Core/Src/traffic_light_logic/command_process.o: \
  ../Core/Src/traffic_light_logic/command_process.c \
- ../Core/Inc/traffic_light_logic/command_process.h \
- ../Core/Inc/drivers/uart_driver.h ../Core/Inc/main.h \
+ ../Core/Inc/traffic_light_logic/command_process.h ../Core/Inc/main.h \
  ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h \
  ../Core/Inc/stm32f4xx_hal_conf.h \
  ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_rcc.h \
@@ -27,9 +26,12 @@ Core/Src/traffic_light_logic/command_process.o: \
  ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_flash_ramfunc.h \
  ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_pwr.h \
  ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_pwr_ex.h \
- ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_uart.h
+ ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_uart.h \
+ ../Core/Inc/traffic_light_logic/traffic_light.h \
+ ../Core/Inc/drivers/led_driver.h ../Core/Inc/drivers/button_driver.h \
+ ../Core/Inc/config.h ../Core/Inc/main.h \
+ ../Core/Inc/drivers/uart_driver.h
 ../Core/Inc/traffic_light_logic/command_process.h:
-../Core/Inc/drivers/uart_driver.h:
 ../Core/Inc/main.h:
 ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h:
 ../Core/Inc/stm32f4xx_hal_conf.h:
@@ -57,3 +59,9 @@ Core/Src/traffic_light_logic/command_process.o: \
 ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_pwr.h:
 ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_pwr_ex.h:
 ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_uart.h:
+../Core/Inc/traffic_light_logic/traffic_light.h:
+../Core/Inc/drivers/led_driver.h:
+../Core/Inc/drivers/button_driver.h:
+../Core/Inc/config.h:
+../Core/Inc/main.h:
+../Core/Inc/drivers/uart_driver.h:

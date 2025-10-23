@@ -23,18 +23,18 @@ static uint16_t s_line_len = 0;
 void uart_set_interrupts(uint8_t enabled)
 {
     interrupts_enabled = enabled;
-    if (enabled) // включаем работу с прерываниями
+    if (enabled)
     {
-        rx_head = rx_tail = 0; // обнуление указателя на буфер, хранящий данные пришедшие с SDK (rx_buf)
-        tx_head = tx_tail = 0; // обнуление указателя на буфер, хранящий данные для отправки на SDK (tx_buf)
+        rx_head = rx_tail = 0;
+        tx_head = tx_tail = 0;
 
 		HAL_NVIC_EnableIRQ(USART6_IRQn);
-        HAL_UART_Receive_IT(&huart6, &rx_byte, 1); // "подписка" на прием 1 байта - сейчас ничего не прочитается, только когда байт будет готов и вызовется HAL_UART_RxCpltCallback
+        HAL_UART_Receive_IT(&huart6, &rx_byte, 1);
     }
-    else // выключаем работу с прерываниями
+    else
     {
-        HAL_UART_AbortReceive_IT(&huart6); // обрываем операцию на ожидание прерывания для получение байта с SDK
-        HAL_UART_AbortTransmit_IT(&huart6); // обрываем операция на получение прерывания для отправки байта на SDK
+        HAL_UART_AbortReceive_IT(&huart6);
+        HAL_UART_AbortTransmit_IT(&huart6);
         HAL_NVIC_DisableIRQ(USART6_IRQn);
     }
 }
@@ -49,18 +49,18 @@ uint8_t uart_get_interrupts(void) { return interrupts_enabled; }
  */
 void uart_print_char(char ch)
 {
-    if (!interrupts_enabled) // прерывания выключены
+    if (!interrupts_enabled)
     {
-        HAL_UART_Transmit(&huart6, (uint8_t *)&ch, 1, UART_TIMEOUT); // отправляем один символ за максимум UART_TIMEOUT мс
+        HAL_UART_Transmit(&huart6, (uint8_t *)&ch, 1, UART_TIMEOUT);
         return;
     }
-    uint16_t next = (tx_head + 1) % UART_TX_BUF_SIZE; // обновляем ссылку на следующую ячейку в tx_buf
-    if (!rb_full(tx_head, tx_tail, UART_RX_BUF_SIZE)) // если в tx_buf еще есть место
+    uint16_t next = (tx_head + 1) % UART_TX_BUF_SIZE;
+    if (!rb_full(tx_head, tx_tail, UART_RX_BUF_SIZE))
     {
-        tx_buf[tx_head] = (uint8_t)ch;	// кладем 1 байт в tx-очередь
-        tx_head = next;	// меняем указатель на следующий (пока пустой) байт в tx-очереди
-        if (__HAL_UART_GET_FLAG(&huart6, UART_FLAG_TXE)) // UART свободен (Transmit data register empty == true)
-            HAL_UART_Transmit_IT(&huart6, &tx_buf[tx_tail], 1); // запускается передача первого байта
+        tx_buf[tx_head] = (uint8_t)ch;
+        tx_head = next;
+        if (__HAL_UART_GET_FLAG(&huart6, UART_FLAG_TXE))
+            HAL_UART_Transmit_IT(&huart6, &tx_buf[tx_tail], 1);
     }
 }
 
@@ -83,18 +83,18 @@ void uart_println_string(char *str)
  */
 static int uart_read_char(char *ch)
 {
-    if (!interrupts_enabled) // прерывания выключены
+    if (!interrupts_enabled)
     {
-        if (HAL_UART_Receive(&huart6, (uint8_t *)ch, 1, 0) == HAL_OK) // принимаем 1 байт с таймаутом 0 (неблокирующе) - если байта возврат 0 и идем дальше
-            return 1;
+        if (HAL_UART_Receive(&huart6, (uint8_t *)ch, 1, 0) == HAL_OK)
+        	return 1;
         else
             return 0;
     }
-    else // с прерываниями
+    else
     {
-    	if (rb_empty(rx_head, rx_tail)) return 0; // в буфере на прием rx_buf ничего нет, очередь пустая
-        *ch = rx_buf[rx_tail]; // забираем из очереди принятый байт
-        rx_tail = (rx_tail + 1) % UART_RX_BUF_SIZE; // смещаем указатель на следующий в очереди байт
+    	if (rb_empty(rx_head, rx_tail)) return 0;
+        *ch = rx_buf[rx_tail];
+        rx_tail = (rx_tail + 1) % UART_RX_BUF_SIZE;
         return 1;
     }
 }
@@ -105,13 +105,13 @@ static int uart_read_char(char *ch)
 void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart)
 {
     if (huart->Instance != USART6) return;
-    uint16_t next = (rx_head + 1) % UART_RX_BUF_SIZE; // указатель на адрес следующего элемента в rx_buf
-    if (!rb_full(rx_head, rx_tail, UART_RX_BUF_SIZE)) // проверяем что в rx_buf есть место
+    uint16_t next = (rx_head + 1) % UART_RX_BUF_SIZE;
+    if (!rb_full(rx_head, rx_tail, UART_RX_BUF_SIZE))
     {
         rx_buf[rx_head] = rx_byte;
         rx_head = next;
     }
-    HAL_UART_Receive_IT(&huart6, &rx_byte, 1); // сразу после приемя ждем следующий байт (запускаем непрерывный поток)
+    HAL_UART_Receive_IT(&huart6, &rx_byte, 1);
 }
 
 /*
@@ -121,15 +121,17 @@ void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart)
 void HAL_UART_TxCpltCallback(UART_HandleTypeDef *huart)
 {
     if (huart->Instance != USART6) return;
-    if (!rb_empty(tx_head, tx_tail)) // если очередь не пустая
+    if (!rb_empty(tx_head, tx_tail))
     {
-        tx_tail = (tx_tail + 1) % UART_TX_BUF_SIZE; // этот байт уже ушёл, идем к следующему
+        tx_tail = (tx_tail + 1) % UART_TX_BUF_SIZE;
         if (!rb_empty(tx_head, tx_tail))
-            HAL_UART_Transmit_IT(&huart6, &tx_buf[tx_tail], 1); // шлем следующий байт
+            HAL_UART_Transmit_IT(&huart6, &tx_buf[tx_tail], 1);
     }
 }
 
-
+/*
+ *
+ */
 void uart_receive_line_task(void) {
     char c;
     while (uart_read_char(&c)) {

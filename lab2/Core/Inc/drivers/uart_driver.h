@@ -9,7 +9,7 @@
 #define UART_RX_BUF_SIZE 128
 #define UART_TX_BUF_SIZE 128
 #define UART_MAX_LINE 128
-#define UART_TIMEOUT 100
+#define UART_TIMEOUT 10
 
 void uart_set_interrupts(uint8_t enabled);
 uint8_t uart_get_interrupts(void);

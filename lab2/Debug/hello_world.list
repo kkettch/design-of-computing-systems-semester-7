@@ -39,13 +39,13 @@ Idx Name          Size      VMA       LMA       File off  Algn
                   CONTENTS, READONLY, DEBUGGING, OCTETS
  17 .debug_macro  000230fc  00000000  00000000  0002d610  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 18 .debug_line   0000c6c9  00000000  00000000  0005070c  2**0
+ 18 .debug_line   0000c6cb  00000000  00000000  0005070c  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 19 .debug_str    000d0587  00000000  00000000  0005cdd5  2**0
+ 19 .debug_str    000d0586  00000000  00000000  0005cdd7  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 20 .comment      00000050  00000000  00000000  0012d35c  2**0
+ 20 .comment      00000050  00000000  00000000  0012d35d  2**0
                   CONTENTS, READONLY
- 21 .debug_frame  000026fc  00000000  00000000  0012d3ac  2**2
+ 21 .debug_frame  000026fc  00000000  00000000  0012d3b0  2**2
                   CONTENTS, READONLY, DEBUGGING, OCTETS
 
 Disassembly of section .text:
@@ -747,12 +747,12 @@ void uart_set_interrupts(uint8_t enabled)
  800079a:	4a15      	ldr	r2, [pc, #84]	; (80007f0 <uart_set_interrupts+0x60>)
  800079c:	79fb      	ldrb	r3, [r7, #7]
  800079e:	7013      	strb	r3, [r2, #0]
-    if (enabled) // включаем работу с прерываниями
+    if (enabled)
  80007a0:	79fb      	ldrb	r3, [r7, #7]
  80007a2:	2b00      	cmp	r3, #0
  80007a4:	d016      	beq.n	80007d4 <uart_set_interrupts+0x44>
     {
-        rx_head = rx_tail = 0; // обнуление указателя на буфер, хранящий данные пришедшие с SDK (rx_buf)
+        rx_head = rx_tail = 0;
  80007a6:	2100      	movs	r1, #0
  80007a8:	4b12      	ldr	r3, [pc, #72]	; (80007f4 <uart_set_interrupts+0x64>)
  80007aa:	460a      	mov	r2, r1
@@ -760,7 +760,7 @@ void uart_set_interrupts(uint8_t enabled)
  80007ae:	4b12      	ldr	r3, [pc, #72]	; (80007f8 <uart_set_interrupts+0x68>)
  80007b0:	460a      	mov	r2, r1
  80007b2:	801a      	strh	r2, [r3, #0]
-        tx_head = tx_tail = 0; // обнуление указателя на буфер, хранящий данные для отправки на SDK (tx_buf)
+        tx_head = tx_tail = 0;
  80007b4:	2100      	movs	r1, #0
  80007b6:	4b11      	ldr	r3, [pc, #68]	; (80007fc <uart_set_interrupts+0x6c>)
  80007b8:	460a      	mov	r2, r1
@@ -772,22 +772,22 @@ void uart_set_interrupts(uint8_t enabled)
 		HAL_NVIC_EnableIRQ(USART6_IRQn);
  80007c2:	2047      	movs	r0, #71	; 0x47
  80007c4:	f001 f897 	bl	80018f6 <HAL_NVIC_EnableIRQ>
-        HAL_UART_Receive_IT(&huart6, &rx_byte, 1); // "подписка" на прием 1 байта - сейчас ничего не прочитается, только когда байт будет готов и вызовется HAL_UART_RxCpltCallback
+        HAL_UART_Receive_IT(&huart6, &rx_byte, 1);
  80007c8:	2201      	movs	r2, #1
  80007ca:	490e      	ldr	r1, [pc, #56]	; (8000804 <uart_set_interrupts+0x74>)
  80007cc:	480e      	ldr	r0, [pc, #56]	; (8000808 <uart_set_interrupts+0x78>)
  80007ce:	f002 f949 	bl	8002a64 <HAL_UART_Receive_IT>
     {
-        HAL_UART_AbortReceive_IT(&huart6); // обрываем операцию на ожидание прерывания для получение байта с SDK
-        HAL_UART_AbortTransmit_IT(&huart6); // обрываем операция на получение прерывания для отправки байта на SDK
+        HAL_UART_AbortReceive_IT(&huart6);
+        HAL_UART_AbortTransmit_IT(&huart6);
         HAL_NVIC_DisableIRQ(USART6_IRQn);
     }
 }
  80007d2:	e008      	b.n	80007e6 <uart_set_interrupts+0x56>
-        HAL_UART_AbortReceive_IT(&huart6); // обрываем операцию на ожидание прерывания для получение байта с SDK
+        HAL_UART_AbortReceive_IT(&huart6);
  80007d4:	480c      	ldr	r0, [pc, #48]	; (8000808 <uart_set_interrupts+0x78>)
  80007d6:	f002 f9e9 	bl	8002bac <HAL_UART_AbortReceive_IT>
-        HAL_UART_AbortTransmit_IT(&huart6); // обрываем операция на получение прерывания для отправки байта на SDK
+        HAL_UART_AbortTransmit_IT(&huart6);
  80007da:	480b      	ldr	r0, [pc, #44]	; (8000808 <uart_set_interrupts+0x78>)
  80007dc:	f002 f972 	bl	8002ac4 <HAL_UART_AbortTransmit_IT>
         HAL_NVIC_DisableIRQ(USART6_IRQn);
@@ -836,22 +836,22 @@ void uart_print_char(char ch)
  8000828:	af00      	add	r7, sp, #0
  800082a:	4603      	mov	r3, r0
  800082c:	71fb      	strb	r3, [r7, #7]
-    if (!interrupts_enabled) // прерывания выключены
+    if (!interrupts_enabled)
  800082e:	4b21      	ldr	r3, [pc, #132]	; (80008b4 <uart_print_char+0x90>)
  8000830:	781b      	ldrb	r3, [r3, #0]
  8000832:	2b00      	cmp	r3, #0
  8000834:	d106      	bne.n	8000844 <uart_print_char+0x20>
     {
-        HAL_UART_Transmit(&huart6, (uint8_t *)&ch, 1, UART_TIMEOUT); // отправляем один символ за максимум UART_TIMEOUT мс
+        HAL_UART_Transmit(&huart6, (uint8_t *)&ch, 1, UART_TIMEOUT);
  8000836:	1df9      	adds	r1, r7, #7
- 8000838:	2364      	movs	r3, #100	; 0x64
+ 8000838:	230a      	movs	r3, #10
  800083a:	2201      	movs	r2, #1
  800083c:	481e      	ldr	r0, [pc, #120]	; (80008b8 <uart_print_char+0x94>)
  800083e:	f001 ff98 	bl	8002772 <HAL_UART_Transmit>
         return;
  8000842:	e034      	b.n	80008ae <uart_print_char+0x8a>
     }
-    uint16_t next = (tx_head + 1) % UART_TX_BUF_SIZE; // обновляем ссылку на следующую ячейку в tx_buf
+    uint16_t next = (tx_head + 1) % UART_TX_BUF_SIZE;
  8000844:	4b1d      	ldr	r3, [pc, #116]	; (80008bc <uart_print_char+0x98>)
  8000846:	881b      	ldrh	r3, [r3, #0]
  8000848:	b29b      	uxth	r3, r3
@@ -862,7 +862,7 @@ void uart_print_char(char ch)
  8000856:	bf58      	it	pl
  8000858:	4253      	negpl	r3, r2
  800085a:	81fb      	strh	r3, [r7, #14]
-    if (!rb_full(tx_head, tx_tail, UART_RX_BUF_SIZE)) // если в tx_buf еще есть место
+    if (!rb_full(tx_head, tx_tail, UART_RX_BUF_SIZE))
  800085c:	4b17      	ldr	r3, [pc, #92]	; (80008bc <uart_print_char+0x98>)
  800085e:	881b      	ldrh	r3, [r3, #0]
  8000860:	b29b      	uxth	r3, r3
@@ -876,7 +876,7 @@ void uart_print_char(char ch)
  8000872:	2b00      	cmp	r3, #0
  8000874:	d11b      	bne.n	80008ae <uart_print_char+0x8a>
     {
-        tx_buf[tx_head] = (uint8_t)ch;	// кладем 1 байт в tx-очередь
+        tx_buf[tx_head] = (uint8_t)ch;
  8000876:	4b11      	ldr	r3, [pc, #68]	; (80008bc <uart_print_char+0x98>)
  8000878:	881b      	ldrh	r3, [r3, #0]
  800087a:	b29b      	uxth	r3, r3
@@ -884,18 +884,18 @@ void uart_print_char(char ch)
  800087e:	79f9      	ldrb	r1, [r7, #7]
  8000880:	4b10      	ldr	r3, [pc, #64]	; (80008c4 <uart_print_char+0xa0>)
  8000882:	5499      	strb	r1, [r3, r2]
-        tx_head = next;	// меняем указатель на следующий (пока пустой) байт в tx-очереди
+        tx_head = next;
  8000884:	4a0d      	ldr	r2, [pc, #52]	; (80008bc <uart_print_char+0x98>)
  8000886:	89fb      	ldrh	r3, [r7, #14]
  8000888:	8013      	strh	r3, [r2, #0]
-        if (__HAL_UART_GET_FLAG(&huart6, UART_FLAG_TXE)) // UART свободен (Transmit data register empty == true)
+        if (__HAL_UART_GET_FLAG(&huart6, UART_FLAG_TXE))
  800088a:	4b0b      	ldr	r3, [pc, #44]	; (80008b8 <uart_print_char+0x94>)
  800088c:	681b      	ldr	r3, [r3, #0]
  800088e:	681b      	ldr	r3, [r3, #0]
  8000890:	f003 0380 	and.w	r3, r3, #128	; 0x80
  8000894:	2b80      	cmp	r3, #128	; 0x80
  8000896:	d10a      	bne.n	80008ae <uart_print_char+0x8a>
-            HAL_UART_Transmit_IT(&huart6, &tx_buf[tx_tail], 1); // запускается передача первого байта
+            HAL_UART_Transmit_IT(&huart6, &tx_buf[tx_tail], 1);
  8000898:	4b09      	ldr	r3, [pc, #36]	; (80008c0 <uart_print_char+0x9c>)
  800089a:	881b      	ldrh	r3, [r3, #0]
  800089c:	b29b      	uxth	r3, r3
@@ -980,13 +980,13 @@ static int uart_read_char(char *ch)
  8000916:	b082      	sub	sp, #8
  8000918:	af00      	add	r7, sp, #0
  800091a:	6078      	str	r0, [r7, #4]
-    if (!interrupts_enabled) // прерывания выключены
+    if (!interrupts_enabled)
  800091c:	4b1d      	ldr	r3, [pc, #116]	; (8000994 <uart_read_char+0x80>)
  800091e:	781b      	ldrb	r3, [r3, #0]
  8000920:	2b00      	cmp	r3, #0
  8000922:	d10c      	bne.n	800093e <uart_read_char+0x2a>
     {
-        if (HAL_UART_Receive(&huart6, (uint8_t *)ch, 1, 0) == HAL_OK) // принимаем 1 байт с таймаутом 0 (неблокирующе) - если байта возврат 0 и идем дальше
+        if (HAL_UART_Receive(&huart6, (uint8_t *)ch, 1, 0) == HAL_OK)
  8000924:	2300      	movs	r3, #0
  8000926:	2201      	movs	r2, #1
  8000928:	6879      	ldr	r1, [r7, #4]
@@ -995,7 +995,7 @@ static int uart_read_char(char *ch)
  8000930:	4603      	mov	r3, r0
  8000932:	2b00      	cmp	r3, #0
  8000934:	d101      	bne.n	800093a <uart_read_char+0x26>
-            return 1;
+        	return 1;
  8000936:	2301      	movs	r3, #1
  8000938:	e027      	b.n	800098a <uart_read_char+0x76>
         else
@@ -1003,9 +1003,9 @@ static int uart_read_char(char *ch)
  800093a:	2300      	movs	r3, #0
  800093c:	e025      	b.n	800098a <uart_read_char+0x76>
     }
-    else // с прерываниями
+    else
     {
-    	if (rb_empty(rx_head, rx_tail)) return 0; // в буфере на прием rx_buf ничего нет, очередь пустая
+    	if (rb_empty(rx_head, rx_tail)) return 0;
  800093e:	4b17      	ldr	r3, [pc, #92]	; (800099c <uart_read_char+0x88>)
  8000940:	881b      	ldrh	r3, [r3, #0]
  8000942:	b29b      	uxth	r3, r3
@@ -1020,7 +1020,7 @@ static int uart_read_char(char *ch)
  8000956:	d001      	beq.n	800095c <uart_read_char+0x48>
  8000958:	2300      	movs	r3, #0
  800095a:	e016      	b.n	800098a <uart_read_char+0x76>
-        *ch = rx_buf[rx_tail]; // забираем из очереди принятый байт
+        *ch = rx_buf[rx_tail];
  800095c:	4b10      	ldr	r3, [pc, #64]	; (80009a0 <uart_read_char+0x8c>)
  800095e:	881b      	ldrh	r3, [r3, #0]
  8000960:	b29b      	uxth	r3, r3
@@ -1029,7 +1029,7 @@ static int uart_read_char(char *ch)
  8000966:	5c9a      	ldrb	r2, [r3, r2]
  8000968:	687b      	ldr	r3, [r7, #4]
  800096a:	701a      	strb	r2, [r3, #0]
-        rx_tail = (rx_tail + 1) % UART_RX_BUF_SIZE; // смещаем указатель на следующий в очереди байт
+        rx_tail = (rx_tail + 1) % UART_RX_BUF_SIZE;
  800096c:	4b0c      	ldr	r3, [pc, #48]	; (80009a0 <uart_read_char+0x8c>)
  800096e:	881b      	ldrh	r3, [r3, #0]
  8000970:	b29b      	uxth	r3, r3
@@ -1074,7 +1074,7 @@ void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart)
  80009b4:	4a18      	ldr	r2, [pc, #96]	; (8000a18 <HAL_UART_RxCpltCallback+0x70>)
  80009b6:	4293      	cmp	r3, r2
  80009b8:	d129      	bne.n	8000a0e <HAL_UART_RxCpltCallback+0x66>
-    uint16_t next = (rx_head + 1) % UART_RX_BUF_SIZE; // указатель на адрес следующего элемента в rx_buf
+    uint16_t next = (rx_head + 1) % UART_RX_BUF_SIZE;
  80009ba:	4b18      	ldr	r3, [pc, #96]	; (8000a1c <HAL_UART_RxCpltCallback+0x74>)
  80009bc:	881b      	ldrh	r3, [r3, #0]
  80009be:	b29b      	uxth	r3, r3
@@ -1085,7 +1085,7 @@ void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart)
  80009cc:	bf58      	it	pl
  80009ce:	4253      	negpl	r3, r2
  80009d0:	81fb      	strh	r3, [r7, #14]
-    if (!rb_full(rx_head, rx_tail, UART_RX_BUF_SIZE)) // проверяем что в rx_buf есть место
+    if (!rb_full(rx_head, rx_tail, UART_RX_BUF_SIZE))
  80009d2:	4b12      	ldr	r3, [pc, #72]	; (8000a1c <HAL_UART_RxCpltCallback+0x74>)
  80009d4:	881b      	ldrh	r3, [r3, #0]
  80009d6:	b29b      	uxth	r3, r3
@@ -1113,7 +1113,7 @@ void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart)
  80009fe:	89fb      	ldrh	r3, [r7, #14]
  8000a00:	8013      	strh	r3, [r2, #0]
     }
-    HAL_UART_Receive_IT(&huart6, &rx_byte, 1); // сразу после приемя ждем следующий байт (запускаем непрерывный поток)
+    HAL_UART_Receive_IT(&huart6, &rx_byte, 1);
  8000a02:	2201      	movs	r2, #1
  8000a04:	4907      	ldr	r1, [pc, #28]	; (8000a24 <HAL_UART_RxCpltCallback+0x7c>)
  8000a06:	4809      	ldr	r0, [pc, #36]	; (8000a2c <HAL_UART_RxCpltCallback+0x84>)
@@ -1150,7 +1150,7 @@ void HAL_UART_TxCpltCallback(UART_HandleTypeDef *huart)
  8000a3c:	4a1d      	ldr	r2, [pc, #116]	; (8000ab4 <HAL_UART_TxCpltCallback+0x84>)
  8000a3e:	4293      	cmp	r3, r2
  8000a40:	d133      	bne.n	8000aaa <HAL_UART_TxCpltCallback+0x7a>
-    if (!rb_empty(tx_head, tx_tail)) // если очередь не пустая
+    if (!rb_empty(tx_head, tx_tail))
  8000a42:	4b1d      	ldr	r3, [pc, #116]	; (8000ab8 <HAL_UART_TxCpltCallback+0x88>)
  8000a44:	881b      	ldrh	r3, [r3, #0]
  8000a46:	b29b      	uxth	r3, r3
@@ -1164,7 +1164,7 @@ void HAL_UART_TxCpltCallback(UART_HandleTypeDef *huart)
  8000a58:	2b00      	cmp	r3, #0
  8000a5a:	d127      	bne.n	8000aac <HAL_UART_TxCpltCallback+0x7c>
     {
-        tx_tail = (tx_tail + 1) % UART_TX_BUF_SIZE; // этот байт уже ушёл, идем к следующему
+        tx_tail = (tx_tail + 1) % UART_TX_BUF_SIZE;
  8000a5c:	4b17      	ldr	r3, [pc, #92]	; (8000abc <HAL_UART_TxCpltCallback+0x8c>)
  8000a5e:	881b      	ldrh	r3, [r3, #0]
  8000a60:	b29b      	uxth	r3, r3
@@ -1190,7 +1190,7 @@ void HAL_UART_TxCpltCallback(UART_HandleTypeDef *huart)
  8000a8c:	4603      	mov	r3, r0
  8000a8e:	2b00      	cmp	r3, #0
  8000a90:	d10c      	bne.n	8000aac <HAL_UART_TxCpltCallback+0x7c>
-            HAL_UART_Transmit_IT(&huart6, &tx_buf[tx_tail], 1); // шлем следующий байт
+            HAL_UART_Transmit_IT(&huart6, &tx_buf[tx_tail], 1);
  8000a92:	4b0a      	ldr	r3, [pc, #40]	; (8000abc <HAL_UART_TxCpltCallback+0x8c>)
  8000a94:	881b      	ldrh	r3, [r3, #0]
  8000a96:	b29b      	uxth	r3, r3
@@ -1218,7 +1218,9 @@ void HAL_UART_TxCpltCallback(UART_HandleTypeDef *huart)
 
 08000ac8 <uart_receive_line_task>:
 
-
+/*
+ *
+ */
 void uart_receive_line_task(void) {
  8000ac8:	b580      	push	{r7, lr}
  8000aca:	b082      	sub	sp, #8

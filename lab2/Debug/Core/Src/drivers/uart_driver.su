@@ -8,4 +8,4 @@
 ../Core/Src/drivers/uart_driver.c:84:12:uart_read_char	16	static
 ../Core/Src/drivers/uart_driver.c:105:6:HAL_UART_RxCpltCallback	24	static
 ../Core/Src/drivers/uart_driver.c:121:6:HAL_UART_TxCpltCallback	16	static
-../Core/Src/drivers/uart_driver.c:133:6:uart_receive_line_task	16	static
+../Core/Src/drivers/uart_driver.c:135:6:uart_receive_line_task	16	static

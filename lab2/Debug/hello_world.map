@@ -4305,65 +4305,65 @@ LOAD /Applications/STM32CubeIDE.app/Contents/Eclipse/plugins/com.st.stm32cube.id
  .debug_macro   0x0000000000022d63      0x1de ./Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_rcc.o
  .debug_macro   0x0000000000022f41      0x1bb ./Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_uart.o
 
-.debug_line     0x0000000000000000     0xc6c9
+.debug_line     0x0000000000000000     0xc6cb
  .debug_line    0x0000000000000000      0x77c ./Core/Src/drivers/button_driver.o
  .debug_line    0x000000000000077c      0x70f ./Core/Src/drivers/led_driver.o
- .debug_line    0x0000000000000e8b      0xa78 ./Core/Src/drivers/uart_driver.o
- .debug_line    0x0000000000001903      0x6d8 ./Core/Src/gpio.o
- .debug_line    0x0000000000001fdb      0x948 ./Core/Src/main.o
- .debug_line    0x0000000000002923      0x6be ./Core/Src/stm32f4xx_hal_msp.o
- .debug_line    0x0000000000002fe1      0x799 ./Core/Src/stm32f4xx_it.o
- .debug_line    0x000000000000377a      0x52b ./Core/Src/sysmem.o
- .debug_line    0x0000000000003ca5      0x740 ./Core/Src/system_stm32f4xx.o
- .debug_line    0x00000000000043e5      0x72b ./Core/Src/usart.o
- .debug_line    0x0000000000004b10      0xac9 ./Core/Src/traffic_light_logic/command_process.o
- .debug_line    0x00000000000055d9      0x880 ./Core/Src/traffic_light_logic/traffic_light.o
- .debug_line    0x0000000000005e59       0x88 ./Core/Startup/startup_stm32f427vitx.o
- .debug_line    0x0000000000005ee1      0x9dc ./Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal.o
- .debug_line    0x00000000000068bd      0xc55 ./Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_cortex.o
- .debug_line    0x0000000000007512      0xf0a ./Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_dma.o
- .debug_line    0x000000000000841c      0xb42 ./Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_gpio.o
- .debug_line    0x0000000000008f5e      0xd20 ./Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_rcc.o
- .debug_line    0x0000000000009c7e     0x2a4b ./Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_uart.o
+ .debug_line    0x0000000000000e8b      0xa7a ./Core/Src/drivers/uart_driver.o
+ .debug_line    0x0000000000001905      0x6d8 ./Core/Src/gpio.o
+ .debug_line    0x0000000000001fdd      0x948 ./Core/Src/main.o
+ .debug_line    0x0000000000002925      0x6be ./Core/Src/stm32f4xx_hal_msp.o
+ .debug_line    0x0000000000002fe3      0x799 ./Core/Src/stm32f4xx_it.o
+ .debug_line    0x000000000000377c      0x52b ./Core/Src/sysmem.o
+ .debug_line    0x0000000000003ca7      0x740 ./Core/Src/system_stm32f4xx.o
+ .debug_line    0x00000000000043e7      0x72b ./Core/Src/usart.o
+ .debug_line    0x0000000000004b12      0xac9 ./Core/Src/traffic_light_logic/command_process.o
+ .debug_line    0x00000000000055db      0x880 ./Core/Src/traffic_light_logic/traffic_light.o
+ .debug_line    0x0000000000005e5b       0x88 ./Core/Startup/startup_stm32f427vitx.o
+ .debug_line    0x0000000000005ee3      0x9dc ./Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal.o
+ .debug_line    0x00000000000068bf      0xc55 ./Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_cortex.o
+ .debug_line    0x0000000000007514      0xf0a ./Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_dma.o
+ .debug_line    0x000000000000841e      0xb42 ./Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_gpio.o
+ .debug_line    0x0000000000008f60      0xd20 ./Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_rcc.o
+ .debug_line    0x0000000000009c80     0x2a4b ./Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_uart.o
 
-.debug_str      0x0000000000000000    0xd0587
+.debug_str      0x0000000000000000    0xd0586
  .debug_str     0x0000000000000000    0xc8edc ./Core/Src/drivers/button_driver.o
                                       0xc9164 (size before relaxing)
  .debug_str     0x00000000000c8edc       0x5f ./Core/Src/drivers/led_driver.o
                                       0xc90c3 (size before relaxing)
- .debug_str     0x00000000000c8f3b     0x41ff ./Core/Src/drivers/uart_driver.o
-                                      0xcd296 (size before relaxing)
- .debug_str     0x00000000000cd13a      0x181 ./Core/Src/gpio.o
+ .debug_str     0x00000000000c8f3b     0x41fe ./Core/Src/drivers/uart_driver.o
+                                      0xcd295 (size before relaxing)
+ .debug_str     0x00000000000cd139      0x181 ./Core/Src/gpio.o
                                       0xc91fc (size before relaxing)
- .debug_str     0x00000000000cd2bb      0x33f ./Core/Src/main.o
-                                      0xccca2 (size before relaxing)
- .debug_str     0x00000000000cd5fa       0x2c ./Core/Src/stm32f4xx_hal_msp.o
+ .debug_str     0x00000000000cd2ba      0x33f ./Core/Src/main.o
+                                      0xccca1 (size before relaxing)
+ .debug_str     0x00000000000cd5f9       0x2c ./Core/Src/stm32f4xx_hal_msp.o
                                       0xc9131 (size before relaxing)
- .debug_str     0x00000000000cd626       0xef ./Core/Src/stm32f4xx_it.o
+ .debug_str     0x00000000000cd625       0xef ./Core/Src/stm32f4xx_it.o
                                       0xc952c (size before relaxing)
- .debug_str     0x00000000000cd715      0x4da ./Core/Src/sysmem.o
+ .debug_str     0x00000000000cd714      0x4da ./Core/Src/sysmem.o
                                        0x5dc7 (size before relaxing)
- .debug_str     0x00000000000cdbef       0xdb ./Core/Src/system_stm32f4xx.o
+ .debug_str     0x00000000000cdbee       0xdb ./Core/Src/system_stm32f4xx.o
                                       0xc91e1 (size before relaxing)
- .debug_str     0x00000000000cdcca       0x76 ./Core/Src/usart.o
+ .debug_str     0x00000000000cdcc9       0x76 ./Core/Src/usart.o
                                       0xc9c12 (size before relaxing)
- .debug_str     0x00000000000cdd40     0x120a ./Core/Src/traffic_light_logic/command_process.o
-                                      0xcdaaa (size before relaxing)
- .debug_str     0x00000000000cef4a       0xe9 ./Core/Src/traffic_light_logic/traffic_light.o
+ .debug_str     0x00000000000cdd3f     0x120a ./Core/Src/traffic_light_logic/command_process.o
+                                      0xcdaa9 (size before relaxing)
+ .debug_str     0x00000000000cef49       0xe9 ./Core/Src/traffic_light_logic/traffic_light.o
                                       0xc946d (size before relaxing)
- .debug_str     0x00000000000cf033       0x36 ./Core/Startup/startup_stm32f427vitx.o
+ .debug_str     0x00000000000cf032       0x36 ./Core/Startup/startup_stm32f427vitx.o
                                          0x71 (size before relaxing)
- .debug_str     0x00000000000cf069      0x646 ./Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal.o
+ .debug_str     0x00000000000cf068      0x646 ./Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal.o
                                       0xc9ded (size before relaxing)
- .debug_str     0x00000000000cf6af      0x32d ./Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_cortex.o
+ .debug_str     0x00000000000cf6ae      0x32d ./Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_cortex.o
                                       0xc9ad2 (size before relaxing)
- .debug_str     0x00000000000cf9dc      0x322 ./Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_dma.o
+ .debug_str     0x00000000000cf9db      0x322 ./Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_dma.o
                                       0xc95e8 (size before relaxing)
- .debug_str     0x00000000000cfcfe      0x110 ./Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_gpio.o
+ .debug_str     0x00000000000cfcfd      0x110 ./Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_gpio.o
                                       0xc935c (size before relaxing)
- .debug_str     0x00000000000cfe0e      0x233 ./Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_rcc.o
+ .debug_str     0x00000000000cfe0d      0x233 ./Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_rcc.o
                                       0xc9615 (size before relaxing)
- .debug_str     0x00000000000d0041      0x546 ./Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_uart.o
+ .debug_str     0x00000000000d0040      0x546 ./Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_uart.o
                                       0xc9ba1 (size before relaxing)
 
 .comment        0x0000000000000000       0x50

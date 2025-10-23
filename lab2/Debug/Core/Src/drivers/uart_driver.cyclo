@@ -8,4 +8,4 @@ uart_driver.c:75:6:uart_println_string	1
 uart_driver.c:84:12:uart_read_char	4
 uart_driver.c:105:6:HAL_UART_RxCpltCallback	3
 uart_driver.c:121:6:HAL_UART_TxCpltCallback	4
-uart_driver.c:133:6:uart_receive_line_task	12
+uart_driver.c:135:6:uart_receive_line_task	12

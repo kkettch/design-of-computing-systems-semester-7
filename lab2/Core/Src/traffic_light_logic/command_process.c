@@ -13,7 +13,7 @@ void process_command_line(const char *line)
     int count = sscanf(line, "%31s %31s %31s", cmd, arg1, arg2);
 
     if (count <= 0) {
-        uart_println_string("Empty command");
+    	uart_transmitln_string("Empty command");
         return;
     }
 
@@ -44,73 +44,73 @@ void process_command_line(const char *line)
 		}
 
         // Color
-        uart_print_string("State: ");
-        uart_println_string((char *)color);
+        uart_transmit_string("State: ");
+        uart_transmitln_string((char *)color);
 
         // Mode
-        uart_print_string("Mode: ");
+        uart_transmit_string("Mode: ");
         snprintf(buffer, sizeof(buffer), "%d", current_mode);
-        uart_println_string(buffer);
+        uart_transmitln_string(buffer);
 
         // Timeout
-        uart_print_string("Timeout (sec): ");
+        uart_transmit_string("Timeout (sec): ");
         snprintf(buffer, sizeof(buffer), "%lu", (unsigned long)red_timeout_sec / 1000);
-        uart_println_string(buffer);
+        uart_transmitln_string(buffer);
 
         // Interruption
-        uart_print_string("Interruption: ");
+        uart_transmit_string("Interruption: ");
         snprintf(buffer, sizeof(buffer), "%c", uart_get_interrupts() ? 'I' : 'P');
-        uart_println_string(buffer);
+        uart_transmitln_string(buffer);
 
         break;
     }
     case CMD_SET_MODE:
     {
         if (count < 3) {
-            uart_println_string("Usage: set mode 1|2");
+        	uart_transmitln_string("Usage: set mode 1|2");
             break;
         }
         int mode = atoi(arg2);
         if (mode == 1 || mode == 2) {
             current_mode = mode;
-            uart_println_string("OK");
+            uart_transmitln_string("OK");
         } else {
-            uart_println_string("ERROR: Invalid mode. Usage: set mode 1|2");
+        	uart_transmitln_string("ERROR: Invalid mode. Usage: set mode 1|2");
         }
         break;
     }
     case CMD_SET_TIMEOUT: {
         if (count < 3) {
-            uart_println_string("Usage: set timeout X");
+        	uart_transmitln_string("Usage: set timeout X");
             break;
         }
         int t = atoi(arg2) * 1000;
         if (t > 0 && t > RED_TIME_SHORT_MS) {
             red_timeout_sec = (uint32_t)t;
-            uart_println_string("OK");
+            uart_transmitln_string("OK");
         } else {
-            uart_println_string("ERROR: Timeout must be more than RED_TIME_SHORT");
+        	uart_transmitln_string("ERROR: Timeout must be more than RED_TIME_SHORT");
         }
         break;
     }
     case CMD_SET_INTERRUPTS: {
         if (count < 3) {
-            uart_println_string("Usage: set interrupts on|off");
+        	uart_transmitln_string("Usage: set interrupts on|off");
             break;
         }
         if (strcmp(arg2, "on") == 0) {
             uart_set_interrupts(1);
-            uart_println_string("Interrupts ON");
+            uart_transmitln_string("Interrupts ON");
         } else if (strcmp(arg2, "off") == 0) {
             uart_set_interrupts(0);
-            uart_println_string("Interrupts OFF");
+            uart_transmitln_string("Interrupts OFF");
         } else {
-            uart_println_string("ERROR: Invalid parameter (use on|off)");
+        	uart_transmitln_string("ERROR: Invalid parameter (use on|off)");
         }
         break;
     }
     default:
-        uart_println_string("Unknown command");
+    	uart_transmitln_string("Unknown command");
         break;
     }
 }

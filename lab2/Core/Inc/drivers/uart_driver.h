@@ -14,9 +14,9 @@
 void uart_set_interrupts(uint8_t enabled);
 uint8_t uart_get_interrupts(void);
 
-void uart_print_char(char ch);
-void uart_print_string(char *str);
-void uart_println_string(char *str);
+void uart_transmit_char(char ch);
+void uart_transmit_string(char *str);
+void uart_transmitln_string(char *str);
 
 void uart_receive_line_task(void);
 void process_command_line(const char *line);

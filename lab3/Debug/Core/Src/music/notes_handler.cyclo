@@ -1,0 +1,10 @@
+notes_handler.c:29:6:uart_notes_handler	15
+notes_handler.c:75:6:log_note_info	1
+notes_handler.c:83:6:change_octava	5
+notes_handler.c:119:6:harmony_cancel	2
+notes_handler.c:127:6:play_harmony_start	1
+notes_handler.c:137:6:play_harmony_update	4
+notes_handler.c:157:6:change_duration	5
+notes_handler.c:194:6:tone_update	3
+notes_handler.c:203:6:tone_stop	1
+notes_handler.c:209:6:tone_start	1

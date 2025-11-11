@@ -1,0 +1,10 @@
+../Core/Src/music/notes_handler.c:29:6:uart_notes_handler	24	static
+../Core/Src/music/notes_handler.c:75:6:log_note_info	104	static
+../Core/Src/music/notes_handler.c:83:6:change_octava	80	static
+../Core/Src/music/notes_handler.c:119:6:harmony_cancel	8	static
+../Core/Src/music/notes_handler.c:127:6:play_harmony_start	8	static
+../Core/Src/music/notes_handler.c:137:6:play_harmony_update	8	static
+../Core/Src/music/notes_handler.c:157:6:change_duration	48	static
+../Core/Src/music/notes_handler.c:194:6:tone_update	8	static
+../Core/Src/music/notes_handler.c:203:6:tone_stop	4	static
+../Core/Src/music/notes_handler.c:209:6:tone_start	24	static

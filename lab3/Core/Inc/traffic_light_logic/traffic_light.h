@@ -1,0 +1,44 @@
+#ifndef TRAFFIC_LIGHT_H
+#define TRAFFIC_LIGHT_H
+
+#include "main.h"
+#include "drivers/led_driver.h"
+#include "drivers/button_driver.h"
+#include "config.h"
+
+#define TIME_2_SEC			2000
+#define TIME_3_SEC			3000
+#define TIME_5_SEC			5000
+
+#define GREEN_TIME_MS		TIME_5_SEC
+#define GREEN_BLINK_TIME_MS	TIME_3_SEC
+#define YELLOW_TIME_MS		TIME_2_SEC
+#define RED_TIME_FULL_MS	(GREEN_TIME_MS * 4)
+#define RED_TIME_SHORT_MS	GREEN_TIME_MS
+
+typedef enum {
+    STATE_RED,
+    STATE_GREEN,
+    STATE_GREEN_BLINKING,
+    STATE_YELLOW
+} traffic_light_state_t;
+
+typedef enum {
+    MODE_BUTTON_ENABLED = 1,
+    MODE_BUTTON_DISABLED = 2
+} traffic_mode_t;
+
+extern led_t green_led, yellow_led, red_led;
+extern button_t pedestrian_button;
+extern traffic_light_state_t current_state;
+extern uint32_t state_start_time;
+extern uint8_t next_red_short;
+extern traffic_mode_t current_mode;
+extern uint32_t red_timeout_sec;
+
+void traffic_light_init(void);
+void set_traffic_light(led_color_t color);
+void traffic_light_handler(void);
+void handle_button_press(void);
+
+#endif

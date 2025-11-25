@@ -1,0 +1,4 @@
+../Core/Src/traffic_light_logic/traffic_light.c:12:6:traffic_light_init	8	static
+../Core/Src/traffic_light_logic/traffic_light.c:23:6:set_traffic_light	16	static
+../Core/Src/traffic_light_logic/traffic_light.c:43:6:traffic_light_handler	24	static
+../Core/Src/traffic_light_logic/traffic_light.c:98:6:handle_button_press	16	static

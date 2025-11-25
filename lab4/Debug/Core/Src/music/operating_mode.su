@@ -1,0 +1,3 @@
+../Core/Src/music/operating_mode.c:7:6:project_init	8	static
+../Core/Src/music/operating_mode.c:16:6:handle_operating_mode	80	static
+../Core/Src/music/operating_mode.c:38:6:key_handler	48	static

@@ -1,0 +1,10 @@
+uart_driver.c:17:24:uart_critical_enter	1
+uart_driver.c:23:20:uart_critical_exit	1
+uart_driver.c:27:6:uart_set_interrupts	2
+uart_driver.c:46:6:uart_transmit_char	6
+uart_driver.c:70:6:uart_transmit_string	2
+uart_driver.c:74:6:uart_transmitln_string	1
+uart_driver.c:81:5:uart_receive_char	3
+uart_driver.c:102:6:HAL_UART_RxCpltCallback	3
+uart_driver.c:115:6:HAL_UART_TxCpltCallback	4
+uart_driver.c:126:6:uart_receive_line_task	12

@@ -1,0 +1,6 @@
+../Core/Src/drivers/pca9538_driver.c:4:19:PCA9538_Read_Register	32	static
+../Core/Src/drivers/pca9538_driver.c:9:19:PCA9538_Write_Register	32	static
+../Core/Src/drivers/pca9538_driver.c:14:19:PCA9538_Read_Inputs	16	static
+../Core/Src/drivers/pca9538_driver.c:19:19:PCA9538_Write_Config	16	static
+../Core/Src/drivers/pca9538_driver.c:24:19:PCA9538_Write_Polarity	16	static
+../Core/Src/drivers/pca9538_driver.c:29:19:PCA9538_Write_Output	16	static

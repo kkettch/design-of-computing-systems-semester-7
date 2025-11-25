@@ -1,0 +1,3 @@
+../Core/Src/drivers/keyboard_driver.c:10:19:keyboard_init	16	static
+../Core/Src/drivers/keyboard_driver.c:24:9:keyboard_get_raw	24	static
+../Core/Src/drivers/keyboard_driver.c:62:9:keyboard_update	16	static
